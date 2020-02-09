@@ -23,7 +23,7 @@ import folium
 import geopandas
 import geopy
 import sys
-from ipywidgets.embed import embed_minimal_html
+#from ipywidgets.embed import embed_minimal_html
 
 #import statistics
 #from sklearn import preprocessing
