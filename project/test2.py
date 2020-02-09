@@ -14,6 +14,7 @@
 
 """
 
+
 from flask import Flask, request, render_template, jsonify
 
 
@@ -197,6 +198,7 @@ def my_form_post():
 
     print(a)
 
+
     map = folium.Map(location=locationlist[0], zoom_start=7)
 
     for each in copy_cleanData.iterrows():
@@ -214,8 +216,6 @@ def my_form_post():
 
         mc.add_child(folium.Marker(location=[row.Latitude,row.Longitude], popup="Type of Crime: "+ str(row.OFNS_DESC)+"\n Area: "+str(row.BORO_NM),icon=folium.Icon(color= offensecolor ,icon='info-sign')))
     map_2.add_child(mc)
-
-    
 
 
     return map_2._repr_html_()
