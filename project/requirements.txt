@@ -1,0 +1,4 @@
+pip install pandas --user
+pip install folium  --user
+pip install geopandas --user
+pip install geopy --user
