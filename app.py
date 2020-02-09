@@ -40,7 +40,11 @@ import gmaps
 import gmaps.datasets
 gmaps.configure(api_key='AIzaSyCJKhTd9xAGWd3sS_kYDJrDjaeh_ycBzaE')
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder = "./dist/static",
+            template_folder = "./dist")
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 
 df = pd.read_csv('Book2.csv')
 
