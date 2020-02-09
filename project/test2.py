@@ -14,7 +14,9 @@
 
 """
 
-from flask import Flask
+
+from flask import Flask, request, render_template, jsonify
+
 
 import pandas as pd
 import folium
@@ -177,9 +179,24 @@ print(locationlist)
 #dataToShow = df[['ADDRESS']].to_dict(orient='records')
 
 @app.route('/')
-def index():
+def my_form():
+    return render_template('homes.html')
+
+
+@app.route('/', methods=['POST'])
+def my_form_post():
 
     #print(dataToShow)
+    text = request.form['address']
+    processed_text = text.upper()
+    str1= processed_text
+    a = []
+    locator = geopy.Nominatim(user_agent = "myGeocoder")
+    location = locator.geocode(str1)
+    a = [format(location.latitude), format(location.longitude)]
+    #print(a)
+
+    print(a)
 
 
     map = folium.Map(location=locationlist[0], zoom_start=7)
@@ -199,6 +216,7 @@ def index():
 
         mc.add_child(folium.Marker(location=[row.Latitude,row.Longitude], popup="Type of Crime: "+ str(row.OFNS_DESC)+"\n Area: "+str(row.BORO_NM),icon=folium.Icon(color= offensecolor ,icon='info-sign')))
     map_2.add_child(mc)
+
 
     return map_2._repr_html_()
 
