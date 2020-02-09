@@ -27,21 +27,25 @@ a = []
 b = []
 locator = ""
 for i in range(len(df)):
-    locator = u' '.join((locator.geocode(df.loc[i, "ADDRESS"]))).encode('utf-8').strip()
-    location = locator.geocode(df.loc[i, "ADDRESS"])
+    #location = u' '.join((locator.geocode(df.loc[i, "ADDRESS"]))).encode('utf-8').strip()
     try:
+        locator = geopy.Nominatim(user_agent = "myGeocoder")
+        x = df.loc[i, "ADDRESS"]
+        #print(x)
+        location = locator.geocode(x)
         a.append(format(location.latitude))
+        #print(a)
         b.append(format(location.longitude))
     except AttributeError:
-        print("lol")
+        #print("lol")
         continue
 
 
 
-df = pd.DataFrame(list(zip(a, b)),
+df2 = pd.DataFrame(list(zip(a, b)),
                columns =['Latitude', 'Longitude'])
 
-print(df.head(5))
+print(df2.head(5))
 
 from geopy.extra.rate_limiter import RateLimiter
 
