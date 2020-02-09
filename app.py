@@ -35,7 +35,7 @@ import random as rd
 from folium.plugins import MarkerCluster
 
 reload(sys)
-sys.setdefaultencoding('utf8')
+#sys.setdefaultencoding('utf8')
 
 import gmaps
 import gmaps.datasets
